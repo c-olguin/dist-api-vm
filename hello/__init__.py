@@ -6,8 +6,15 @@ app = Flask(__name__)
 
 #Cargar las configuraciones
 app.config.from_object('config.DevelopmentConfig')
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 ma = Marshmallow(app)
+
+db = SQLAlchemy()
+
+def create_app():
+    app = Flask(__name__)
+    db.init_app(app)
+    return app
 
 #Importar vistas
 from hello.views import (auth, distribuidora, clientes_view, productos_view)
