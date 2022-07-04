@@ -57,14 +57,18 @@ def index(request):
         # return HttpResponse(jsonify(results))
     except Exception as ee:
         print(ee)
-        return HttpResponse(json.dumps(ee), content_type="application/json")
+        return HttpResponse(ee)
 
 
 def getEmpleados(request):
-    all_empleados = Usuarios.query.filter_by(rol = 'EMPLEADO').all()
-    results = usersID_schema.dump(all_empleados)
-    # return jsonify(results)
-    return HttpResponse(json.dumps(results), content_type="application/json")
+    try:
+        all_empleados = Usuarios.query.filter_by(rol = 'EMPLEADO').all()
+        results = usersID_schema.dump(all_empleados)
+        # return jsonify(results)
+        return HttpResponse(json.dumps(results), content_type="application/json")
+    except Exception as ee:
+        print(ee)
+        return HttpResponse(ee)
 
 #--------------
 
