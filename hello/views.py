@@ -58,6 +58,8 @@ def index(request):
     except Exception as ee:
         print(ee)
         return HttpResponse(ee)
+    finally:
+        session.close()
 
 
 def getEmpleados(request):
@@ -69,6 +71,8 @@ def getEmpleados(request):
     except Exception as ee:
         print(ee)
         return HttpResponse(ee)
+    finally:
+        session.close()
 
 #--------------
 
